@@ -256,13 +256,13 @@ body {
       שלח וואטסאפ
     </a>
 
-    <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3A%D7%94%D7%A7%D7%A8%D7%A7%D7%A1%20%D7%A9%D7%9C%20%D7%AA%D7%95%D7%9D%0AN%3A%D7%90%D7%99%D7%9C%D7%95%D7%9F%3B%D7%AA%D7%95%D7%9D%3B%3B%3B%0AORG%3A%D7%94%D7%A7%D7%A8%D7%A7%D7%A1%20%D7%A9%D7%9C%20%D7%AA%D7%95%D7%9D%0ATITLE%3A%D7%9C%D7%94%D7%98%D7%95%D7%98%D7%9F%20%D7%95%D7%90%D7%9E%D7%9F%20%D7%A7%D7%A8%D7%A7%D7%A1%0ATEL%3BTYPE%3DCELL%2CPREF%3A%2B972505623865%0AEMAIL%3BTYPE%3DINTERNET%3Ainfo%40tomjuggling.com%0AURL%3Ahttps%3A%2F%2Fwww.tomjuggling.com%0AEND%3AVCARD" download="תום-אילון-קרקס.vcf" class="btn btn-vcard">
+    <button onclick="downloadVCard()" class="btn btn-vcard">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
       </svg>
       שמור את אנשי הקשר שלי
-    </a>
+    </button>
 
   </div>
 
@@ -272,5 +272,31 @@ body {
 
 </div>
 
+<script>
+function downloadVCard() {
+  var vcf = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'FN:הקרקס של תום',
+    'N:אילון;תום;;;',
+    'ORG:הקרקס של תום',
+    'TITLE:להטוטן ואמן קרקס',
+    'TEL;TYPE=CELL,PREF:+972505623865',
+    'EMAIL;TYPE=INTERNET:info@tomjuggling.com',
+    'URL:https://www.tomjuggling.com',
+    'END:VCARD'
+  ].join('\r\n');
+
+  var blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'tom-juggling.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
 </body>
 </html>
