@@ -576,7 +576,7 @@ document.querySelectorAll('.ytc[data-vid]').forEach(function(card) {
 
     var reviews = data.reviews || [];
     var html = '';
-    for (var i = 0; i < Math.min(2, reviews.length); i++) {
+    for (var i = 0; i < Math.min(4, reviews.length); i++) {
       var rv = reviews[i];
       var initial = rv.author ? rv.author.charAt(0) : '?';
       var text = rv.text.length > 220 ? rv.text.substring(0, 220) + '…' : rv.text;
